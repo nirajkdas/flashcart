@@ -1,6 +1,5 @@
 # ⚡ FlashCart — Real-time Flash Sale E-commerce Engine
-
-> A production-grade backend built for a CS final-year project.  
+ 
 > **Java 17 · Spring Boot 3 · PostgreSQL · Redis · WebSocket (STOMP) · JWT**
 
 ---
