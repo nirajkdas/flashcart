@@ -1,5 +1,5 @@
 # ⚡ FlashCart — Real-time Flash Sale E-commerce Engine
- 
+
 > **Java 17 · Spring Boot 3 · PostgreSQL · Redis · WebSocket (STOMP) · JWT**
 
 ---
@@ -100,6 +100,7 @@ User clicks "Buy Now"
 - Maven 3.8+
 - PostgreSQL 14+
 - Redis 7+
+- Docker
 
 ### 1. Database setup
 ```sql
@@ -116,14 +117,31 @@ spring.data.redis.host=localhost
 spring.data.redis.port=6379
 ```
 
-### 3. Run
+### 3. DB Setup
+Run the below docker command 
+docker run --name flashcart-postgres \
+  -e POSTGRES_DB=flashcart_db \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=password \
+  -p 5432:5432 \
+  -d postgres:16
+
+### 4. Redis Setup
+Run the below docker command
+docker run --name flashcart-redis \
+  -p 6379:6379 \
+  -d redis:7 \
+  redis-server --requirepass flashcart_redis_pass
+
+
+### 5. Run
 ```bash
 mvn spring-boot:run
 ```
 
 Flyway runs automatically — creates all tables and seeds sample data.
 
-### 4. Explore the API
+### 6. Explore the API
 Open **http://localhost:8080/swagger-ui.html**
 
 ---
@@ -250,3 +268,4 @@ src/main/resources/
    Sliding-window using Redis INCR + TTL. First request sets a 60-second expiry; each subsequent request increments the counter. If it exceeds the limit, return 429. Fails open if Redis is unavailable.
 
 ---
+
