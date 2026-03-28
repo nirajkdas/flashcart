@@ -250,5 +250,3 @@ src/main/resources/
    Sliding-window using Redis INCR + TTL. First request sets a 60-second expiry; each subsequent request increments the counter. If it exceeds the limit, return 429. Fails open if Redis is unavailable.
 
 ---
-
-*Built with ❤️ as a final-year CS project*
